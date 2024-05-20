@@ -1,3 +1,4 @@
+// Clayton Tupper CIS 269
 var elems = [];
 var state = false;
 
@@ -28,10 +29,10 @@ function play() {
     state = true;
 }
 
-function startRepeat(left, right) {
+function startRepeat() {
     if (!state) {
         var rep = setInterval(() => {
-            play(left, right);
+            play();
         }, 100);
 
         endGame(rep);
@@ -62,26 +63,40 @@ function showResult() {
 
     console.log(indexes);
     
+    let message = "Draw!";
+    
     if(indexes[0] == indexes[1]){
         result[0].style.backgroundColor = "#ffff00";
         result[1].style.backgroundColor = "#ffff00";
     }
     else if (indexes[0] == 0 && indexes[1] == 1) {
         result[1].style.backgroundColor = "#00ff00";
+        message = "Right wins!";
     }
     else if (indexes[0] == 0 && indexes[1] == 2) {
         result[0].style.backgroundColor = "#00ff00";
+        message = "Left wins!";
     }
     else if (indexes[0] == 1 && indexes[1] == 0) {
         result[0].style.backgroundColor = "#00ff00";
+        message = "Left wins!";
     }
     else if (indexes[0] == 1 && indexes[1] == 2) {
         result[1].style.backgroundColor = "#00ff00";
+        message = "Right wins!";
     }
     else if (indexes[0] == 2 && indexes[1] == 0) {
         result[1].style.backgroundColor = "#00ff00";
+        message = "Right wins!";
     }
     else if (indexes[0] == 2 && indexes[1] == 1) {
         result[0].style.backgroundColor = "#00ff00";
+        message = "Left wins!";
     }
+    
+    Swal.fire({
+        title: message,
+        icon: 'info',
+        confirmButtonText: 'OK'
+    });
 }
